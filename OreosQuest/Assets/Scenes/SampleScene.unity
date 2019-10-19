@@ -5328,6 +5328,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3d4f571b83774cd1baf625518ec8ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyRange: 6
+  waitTime: 5
 --- !u!65 &607426274
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5745,7 +5747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 450808, guid: c7ca0992ba00761469f731111e56b107, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.01
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 450808, guid: c7ca0992ba00761469f731111e56b107, type: 3}
       propertyPath: m_LocalRotation.x
