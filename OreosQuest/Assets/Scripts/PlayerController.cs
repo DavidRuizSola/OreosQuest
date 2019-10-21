@@ -10,10 +10,10 @@ public class PlayerController : MonoBehaviour
 
 
     //declarem  i iniciem les variablles
-    private int forceJump = 10; //força del salt
-    private int speed = 10; //velocitat de moviment del oreo
+    public int forceJump; //força del salt
+    public int speed; //velocitat de moviment del oreo
     public bool isOnGround = true;
-    public int score = 0; //Anirem guardant els punts del jugador
+    private int score = 0; //Anirem guardant els punts del jugador
     public bool gameOver = false;
 
     

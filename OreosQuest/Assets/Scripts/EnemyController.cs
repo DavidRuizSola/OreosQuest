@@ -9,16 +9,19 @@ public class EnemyController : MonoBehaviour
     private Animator enemyAnim;
 
     //Declarem la velocitat de moviments de l'enemic
-    private float enemySpeed = 0.5f;
+    public float enemySpeed;
     public float enemyRange;
     private Vector3 enemyPos;
     public int waitTime;
     private int mindState;
+    private bool isRight;
 
     // Start is called before the first frame update
     void Start()
     {
         mindState = 0;
+        isRight = true;
+
         //guardem la posició incial del enemic
         enemyPos = transform.position;
 
@@ -38,12 +41,17 @@ public class EnemyController : MonoBehaviour
     // Fem que l'enemic es mogui cap a la dreta
     void MoveEnemyRight()
     {
+        enemyAnim.SetBool("Eat_b", false);
+        enemyAnim.SetFloat("Speed_f", 2.0f);
+       
+
         if (transform.position.z < enemyPos.z + (enemyRange / 2))
         {
             transform.Translate(0, 0, 1 * enemySpeed * Time.deltaTime);
         }
         else
         {
+            isRight = false;
             mindState = 1;
         }
     }
@@ -52,15 +60,16 @@ public class EnemyController : MonoBehaviour
     void MoveEnemyLeft()
     {
         enemyAnim.SetBool("Eat_b", false);
-        enemyAnim.SetFloat("Speed_f", 0.2f);
+        enemyAnim.SetFloat("Speed_f", 2.0f);
 
         if (transform.position.z > enemyPos.z - (enemyRange / 2))
         {
-            transform.Translate(0, 0, -1 * enemySpeed * Time.deltaTime);
+            transform.Translate(0, 0, 1 * enemySpeed * Time.deltaTime);
         }
         else
         {
-            mindState = 0;
+            isRight = true;
+            mindState = 1;
         }
     }
 
@@ -81,20 +90,19 @@ public class EnemyController : MonoBehaviour
 
     void EnemyRotate()
     {
-        int i = 0;
-        while(i<181)
-        {
-            transform.eulerAngles = new Vector3(0, i, 0);
-            i ++;
-            Debug.Log(i);
-        }
-       /* for (int i = 0; i < 180; i++)
-        {
-            transform.eulerAngles = new Vector3(0, 1 * Time.deltaTime, 0);
-            Debug.Log(transform.rotation);
-        }*/
+        //transform.eulerAngles = new Vector3(0, 180, 0);
 
-        mindState = 2;
+        if (isRight)
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            mindState = 0;
+        }
+        else
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+            mindState = 2;
+        }
+        
     }
 
     void EnemyBehaviour()
