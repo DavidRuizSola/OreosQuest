@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 
     //declarem les variables
     private Rigidbody playerRb;
+    private Animator playerAnim;
 
 
     //declarem  i iniciem les variablles
@@ -14,16 +15,19 @@ public class PlayerController : MonoBehaviour
     public int speed; //velocitat de moviment del oreo
     public bool isOnGround = true;
     private int score = 0; //Anirem guardant els punts del jugador
-    public bool gameOver = false;
+    private bool gameOver = false;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-
+        //carreguem les opcions del rigidbody
         playerRb = GetComponent<Rigidbody>();
-        
+        //carreguem les opcions del animator
+        playerAnim = GetComponent<Animator>();
+
+
     }
 
     // Update is called once per frame
@@ -53,6 +57,13 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
         }
 
+        //si esta a sobre d'un obscatle tambe volem que salti
+        else if (collision.gameObject.CompareTag("Obstacles"))
+        {
+            isOnGround = true;
+
+        }
+
         //si xoca contra una reward
         else if (collision.gameObject.CompareTag("Reward"))
         {
@@ -66,6 +77,11 @@ public class PlayerController : MonoBehaviour
         {
             //Decidirem que fer quan tingui l'estat de Gameover
             gameOver = true;
+            Debug.Log("Acabem de morir");
+
+            //Activem l'animacio de morir
+            playerAnim.SetBool("Death_b", true);
+            playerAnim.SetInteger("DeathType_int", 2);
         }
     }
 }

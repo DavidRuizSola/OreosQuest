@@ -1909,6 +1909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_01
       objectReference: {fileID: 0}
+    - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 456524, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4850183
@@ -2957,7 +2961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 452110, guid: c2f4b43f266dc11439efef86830dafb4, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 452110, guid: c2f4b43f266dc11439efef86830dafb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4000,6 +4004,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32699585, y: 0.32699984, z: 0.32700062}
   m_Center: {x: 0.00000047683716, y: 0.16349992, z: 0}
+--- !u!114 &437596749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437596745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff98098a7afea476bbe3b7440f2ea2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &437822652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5332,8 +5348,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.4829638, y: 6.9456716, z: 8.175124}
+  m_Center: {x: -0.035470646, y: 2.7553096, z: 0.10671615}
 --- !u!54 &607426275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7015,6 +7031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 100046, guid: 7b6675de545141649953fd8adec4561b, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400046, guid: 7b6675de545141649953fd8adec4561b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7641,6 +7661,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32699585, y: 0.32699984, z: 0.32700062}
   m_Center: {x: 0.00000047683716, y: 0.16349992, z: 0}
+--- !u!114 &796017108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796017104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff98098a7afea476bbe3b7440f2ea2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &797102464
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8531,6 +8563,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.32699585, y: 0.32699984, z: 0.32700062}
   m_Center: {x: 0.00000047683716, y: 0.16349992, z: 0}
+--- !u!114 &870857492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870857488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff98098a7afea476bbe3b7440f2ea2d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &879642683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8894,6 +8938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_01 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 456524, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4850183
@@ -9003,6 +9051,10 @@ PrefabInstance:
     - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_Name
       value: Crate_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
       objectReference: {fileID: 0}
     - target: {fileID: 456524, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9150,6 +9202,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -9215,13 +9268,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.030843573, y: -0.7064338, z: 0.030843573, w: 0.7064338}
-  m_LocalPosition: {x: 13.2, y: 5.16, z: -0.72}
+  m_LocalRotation: {x: 0.06455928, y: -0.7041535, z: 0.06455928, w: 0.7041535}
+  m_LocalPosition: {x: 10.8, y: 4.81, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 5, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: 10.477, y: -90.00001, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fcca9b208b424b6bb5fca7afe13ac76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1754029054}
 --- !u!4 &966521883 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: a56b193d71abd495e92effdee597d26c,
@@ -14536,10 +14602,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0e1f866f6994c11a69b2bc392c7ed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forceJump: 8
+  forceJump: 9
   speed: 3
   isOnGround: 1
-  gameOver: 0
 --- !u!65 &1754029056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15670,6 +15735,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     - target: {fileID: 456524, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.4850183
@@ -16140,6 +16209,10 @@ PrefabInstance:
     - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_Name
       value: Crate_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
       objectReference: {fileID: 0}
     - target: {fileID: 456524, guid: 71782582b9d2cac4cba5251a3b767d13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17373,6 +17446,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 105996545}
     m_Modifications:
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 8.175124
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.10671615
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 6.9456716
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 2.7553096
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.4829638
+      objectReference: {fileID: 0}
+    - target: {fileID: 5269968638542676932, guid: a95035ff6aa2e4eff9700b217830ba2f,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.035470646
+      objectReference: {fileID: 0}
     - target: {fileID: 5269968638515655649, guid: a95035ff6aa2e4eff9700b217830ba2f,
         type: 3}
       propertyPath: m_Name
