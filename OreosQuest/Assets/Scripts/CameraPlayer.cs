@@ -26,9 +26,9 @@ public class CameraPlayer : MonoBehaviour
         Vector3 offset = new Vector3(offsetX, offsetY, offsetZ);
         playerPos = player.transform.position;
 
-        Debug.Log(transform.position);
-        Debug.Log(playerPos.x + " Jugador");
-        Debug.Log(transform.position.x + "Camara");
+       // Debug.Log(transform.position);
+        //Debug.Log(playerPos.x + " Jugador");
+        //Debug.Log(transform.position.x + "Camara");
 
         transform.position = new Vector3(playerPos.x + offset.x, offset.y, playerPos.z + offset.z);
 

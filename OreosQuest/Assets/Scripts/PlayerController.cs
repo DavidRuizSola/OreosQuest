@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public int speed; //velocitat de moviment del oreo
     public bool isOnGround = true;
     private int score = 0; //Anirem guardant els punts del jugador
-    private bool gameOver = false;
+    public bool gameOver = false;
 
     
 
@@ -44,6 +44,12 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
             isOnGround = false;
             Debug.Log("terra");
+        }
+
+        //si morim
+        if (gameOver)
+        {
+            DeadGameOver();
         }
     }
 
@@ -75,13 +81,18 @@ public class PlayerController : MonoBehaviour
         //si xoquem contra un enemic hem de morir
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            //Decidirem que fer quan tingui l'estat de Gameover
+            //l'estat passa a ser de GameOver
             gameOver = true;
-            Debug.Log("Acabem de morir");
-
-            //Activem l'animacio de morir
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 2);
+            
         }
+    }
+
+    void DeadGameOver()
+    {
+        Debug.Log("Acabem de morir");
+
+        //Activem l'animacio de morir
+        playerAnim.SetBool("Death_b", true);
+        playerAnim.SetInteger("DeathType_int", 2);
     }
 }
