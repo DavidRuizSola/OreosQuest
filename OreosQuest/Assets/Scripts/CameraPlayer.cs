@@ -7,30 +7,63 @@ public class CameraPlayer : MonoBehaviour
 
     public GameObject player;
 
-    private float offsetX =10.8f;
-    private float offsetY = 4.81f;
-    private float offsetZ = -0.1f;
+    private float offsetX;
+    private float offsetY;
+    private float offsetZ;
+
+    //la velocitat de la camara
+    public float camSpeed;
+    //si el jugador salta més amunt en farem el seguiment per no perdrel de vista
+    public int jumpTreshold;
 
     private Vector3 playerPos;
-    
+    private Vector3 offset;
+  
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
+        offsetX = 10.8f;
+        offsetY = 4.81f;
+        offsetZ = -0.1f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 offset = new Vector3(offsetX, offsetY, offsetZ);
+        offset = new Vector3(offsetX, offsetY, offsetZ);
         playerPos = player.transform.position;
 
-       // Debug.Log(transform.position);
-        //Debug.Log(playerPos.x + " Jugador");
-        //Debug.Log(transform.position.x + "Camara");
+        
+        if (playerPos.y>jumpTreshold)// si saltem volem seguir el jugador
+        {
+            transform.position = Vector3.MoveTowards(transform.position, FollowJumpVector(), Time.deltaTime * camSpeed);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position,FollowOnGround() , Time.deltaTime * camSpeed);
+        }
+        
 
-        transform.position = new Vector3(playerPos.x + offset.x, offset.y, playerPos.z + offset.z);
+        
 
+
+    }
+
+    //calculem la posició si estem per sobre d'un valor X
+    public Vector3 FollowJumpVector()
+    {
+        Vector3 follow = new Vector3(playerPos.x + offset.x, playerPos.y + (offset.y) / 2, playerPos.z + offset.z);
+        return follow;
+
+    }
+
+    //calculem la posició si estem el terra
+    public Vector3 FollowOnGround()
+    {
+        Vector3 follow = new Vector3(playerPos.x + offset.x, offset.y, playerPos.z + offset.z);
+        return follow;
     }
 }

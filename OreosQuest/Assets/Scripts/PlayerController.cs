@@ -13,19 +13,26 @@ public class PlayerController : MonoBehaviour
     //declarem  i iniciem les variablles
     public int forceJump; //força del salt
     public int speed; //velocitat de moviment del oreo
-    public bool isOnGround = true;
-    private int score = 0; //Anirem guardant els punts del jugador
-    public bool gameOver = false;
+    public bool isOnGround;
+    public int score; //Anirem guardant els punts del jugador
+    public bool gameOver;
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-        //carreguem les opcions del rigidbody
-        playerRb = GetComponent<Rigidbody>();
-        //carreguem les opcions del animator
-        playerAnim = GetComponent<Animator>();
+
+    isOnGround = true;
+    score = 0; //Anirem guardant els punts del jugador
+    gameOver = false;
+
+
+
+    //carreguem les opcions del rigidbody
+    playerRb = GetComponent<Rigidbody>();
+    //carreguem les opcions del animator
+    playerAnim = GetComponent<Animator>();
 
 
     }
@@ -35,15 +42,19 @@ public class PlayerController : MonoBehaviour
     {
 
         //moure el Oreo cap a la dreta o cap a l'esqueraa
-        float moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        transform.Translate(0, 0, moveOreo);
-
-        //Saltar al premer la barra d'espai
-        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        if (!gameOver)
         {
-            playerRb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
-            isOnGround = false;
-            Debug.Log("terra");
+            float moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            transform.Translate(0, 0, moveOreo);
+
+
+            //Saltar al premer la barra d'espai
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+            {
+                playerRb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+                isOnGround = false;
+                //Debug.Log("terra");
+            }
         }
 
         //si morim
@@ -75,7 +86,7 @@ public class PlayerController : MonoBehaviour
         {
             //sumem 10 punts si recollim una poma
             score += 10;
-            Debug.Log(score);
+            //Debug.Log(score);
         }
 
         //si xoquem contra un enemic hem de morir
@@ -89,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
     void DeadGameOver()
     {
-        Debug.Log("Acabem de morir");
+        //Debug.Log("Acabem de morir");
 
         //Activem l'animacio de morir
         playerAnim.SetBool("Death_b", true);

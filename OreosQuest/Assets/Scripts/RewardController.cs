@@ -24,7 +24,7 @@ public class RewardController : MonoBehaviour
         {
             //Cal que destruim l'objecte
             Destroy(gameObject);
-            Debug.Log("Win and destroy reward");
+            //Debug.Log("Win and destroy reward");
         }
 
     }

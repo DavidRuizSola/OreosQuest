@@ -33,7 +33,7 @@ public class SpawnChicken : MonoBehaviour
         
     }
 
-    void CreateChicken()
+    public void CreateChicken()
     {
 
         Instantiate(chicken, startPos, chicken.transform.rotation);
