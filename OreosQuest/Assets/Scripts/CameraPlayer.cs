@@ -43,7 +43,7 @@ public class CameraPlayer : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position,FollowOnGround() , Time.deltaTime * camSpeed);
+            transform.position = Vector3.MoveTowards(transform.position, FollowOnGround() , Time.deltaTime * camSpeed);
         }
         
 
