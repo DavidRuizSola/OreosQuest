@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public int forceJump; //força del salt
     public int speed; //velocitat de moviment del oreo
     public bool isOnGround;
+    public bool isOnMoving;
     public int score; //Anirem guardant els punts del jugador
     public bool gameOver;
 
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     {
 
     isOnGround = true;
+    isOnMoving = false;
     score = 0; //Anirem guardant els punts del jugador
     gameOver = false;
 
@@ -72,12 +74,21 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            isOnMoving = false;
         }
 
         //si esta a sobre d'un obscatle tambe volem que salti
         else if (collision.gameObject.CompareTag("Obstacles"))
         {
             isOnGround = true;
+            isOnMoving = false;
+
+        }
+
+        else if (collision.gameObject.CompareTag("Moving"))
+        {
+            isOnGround = true;
+            isOnMoving = true;
 
         }
 

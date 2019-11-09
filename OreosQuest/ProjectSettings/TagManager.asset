@@ -8,6 +8,7 @@ TagManager:
   - Reward
   - Enemy
   - Obstacles
+  - Moving
   layers:
   - Default
   - TransparentFX

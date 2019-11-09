@@ -18,6 +18,8 @@ public class CameraPlayer : MonoBehaviour
 
     private Vector3 playerPos;
     private Vector3 offset;
+
+    private PlayerController playerController;
   
 
     // Start is called before the first frame update
@@ -28,6 +30,9 @@ public class CameraPlayer : MonoBehaviour
         offsetY = 4.81f;
         offsetZ = -0.1f;
 
+        //assignem els valors del player a la variable
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
     }
 
     // Update is called once per frame
@@ -36,15 +41,26 @@ public class CameraPlayer : MonoBehaviour
         offset = new Vector3(offsetX, offsetY, offsetZ);
         playerPos = player.transform.position;
 
+       
+        //si el jugador no es troba sobra d'una plataforma
+        if(!playerController.isOnMoving)
+        {
+            if (playerPos.y>jumpTreshold)// si saltem volem seguir el jugador
+            {
+                transform.position = Vector3.MoveTowards(transform.position, FollowJumpVector(), Time.deltaTime * camSpeed);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, FollowOnGround() , Time.deltaTime * camSpeed);
+            }
+        }
+        //si el juagador es troba sobra d'una plataforma mobil
+        else if (playerController.isOnMoving)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, FollowOnMoving(), Time.deltaTime * camSpeed);
+        }
+
         
-        if (playerPos.y>jumpTreshold)// si saltem volem seguir el jugador
-        {
-            transform.position = Vector3.MoveTowards(transform.position, FollowJumpVector(), Time.deltaTime * camSpeed);
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, FollowOnGround() , Time.deltaTime * camSpeed);
-        }
         
 
         
@@ -64,6 +80,13 @@ public class CameraPlayer : MonoBehaviour
     public Vector3 FollowOnGround()
     {
         Vector3 follow = new Vector3(playerPos.x + offset.x, offset.y, playerPos.z + offset.z);
+        return follow;
+    }
+
+    //calculem la posició si estem en un plataforma mobil
+    public Vector3 FollowOnMoving()
+    {
+        Vector3 follow = new Vector3(playerPos.x + offset.x, playerPos.y + offset.y, playerPos.z + offset.z);
         return follow;
     }
 }
