@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnMoving;
     public int score; //Anirem guardant els punts del jugador
     public bool gameOver;
+    public ParticleSystem dirtParticle;
 
     
 
@@ -46,8 +47,49 @@ public class PlayerController : MonoBehaviour
         //moure el Oreo cap a la dreta o cap a l'esqueraa
         if (!gameOver)
         {
+
             float moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            transform.Translate(0, 0, moveOreo);
+
+
+
+
+            //Fem que l'oreo es posi a correr si apretem cap a la dreta
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                //encarem al oreo perque es mogui cap a la dreta
+                transform.eulerAngles = new Vector3(0, 0, 0);
+
+                playerAnim.SetBool("Static_b", false);
+                playerAnim.SetFloat("Speed_f", 0.6f);
+
+                transform.Translate(0, 0, moveOreo);
+
+                ParticlePlay();
+
+
+
+            }
+            else if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                //encarem al oreo perque es mogui cap a l'esquerra
+                transform.eulerAngles = new Vector3(0, 180, 0);
+
+                playerAnim.SetBool("Static_b", false);
+                playerAnim.SetFloat("Speed_f", 0.6f);
+
+                transform.Translate(0, 0, -moveOreo);
+
+                ParticlePlay();
+            }
+            else
+            {
+                playerAnim.SetBool("Static_b", true);
+                playerAnim.SetFloat("Speed_f", 0f);
+
+                ParticleStop();
+
+            }
 
 
             //Saltar al premer la barra d'espai
@@ -56,6 +98,16 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
                 isOnGround = false;
                 //Debug.Log("terra");
+                //posem l'animacio de saltar
+                playerAnim.SetBool("Jump_b", true);
+
+                
+            }
+
+
+            if (!isOnGround)
+            {
+                ParticleStop();
             }
         }
 
@@ -75,6 +127,9 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = true;
             isOnMoving = false;
+
+            //deixem de saltar
+            NoJump();
         }
 
         //si esta a sobre d'un obscatle tambe volem que salti
@@ -83,12 +138,18 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;
             isOnMoving = false;
 
+            //deixem de saltar
+            NoJump();
+
         }
 
         else if (collision.gameObject.CompareTag("Moving"))
         {
             isOnGround = true;
             isOnMoving = true;
+
+            //deixem de saltar
+            NoJump();
 
         }
 
@@ -116,5 +177,21 @@ public class PlayerController : MonoBehaviour
         //Activem l'animacio de morir
         playerAnim.SetBool("Death_b", true);
         playerAnim.SetInteger("DeathType_int", 2);
+    }
+
+    void NoJump()
+    {
+        playerAnim.SetBool("Jump_b", false);
+    }
+
+    void ParticlePlay()
+    {
+        dirtParticle.Play();
+    }
+
+    
+    void ParticleStop ()
+    {
+        dirtParticle.Stop();
     }
 }

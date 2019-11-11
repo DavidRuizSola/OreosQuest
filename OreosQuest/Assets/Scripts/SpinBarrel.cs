@@ -20,7 +20,7 @@ public class SpinBarrel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles += new Vector3 (rotationSpeed * Time.deltaTime,0,0);
+        transform.eulerAngles += new Vector3 (rotationSpeed * Time.deltaTime, 0, 0);
         transform.position -= new Vector3(0, 0, movingSpeed * Time.deltaTime);
 
 
