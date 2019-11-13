@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Obstacles
   - Moving
+  - Powerup
   layers:
   - Default
   - TransparentFX

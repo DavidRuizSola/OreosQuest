@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
+        //controlem si estem a sobre d'una plataforma mobil
         else if (collision.gameObject.CompareTag("Moving"))
         {
             isOnGround = true;
@@ -165,6 +166,14 @@ public class PlayerController : MonoBehaviour
         {
             //sumem 10 punts si recollim una poma
             score += 10;
+            //Debug.Log(score);
+        }
+
+        //si xoca contra una powerup
+        else if (collision.gameObject.CompareTag("Powerup"))
+        {
+            //sumem 10 punts si recollim una poma
+            score += 50;
             //Debug.Log(score);
         }
 
