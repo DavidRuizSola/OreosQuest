@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PowerupDestroy : MonoBehaviour
 {
+
+    public PowerUpController powerUpController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,9 @@ public class PowerupDestroy : MonoBehaviour
         //si xoca contra el jugador
         if (collision.gameObject.CompareTag("Player"))
         {
+            //sumem una granada al marcador
+            powerUpController.grenadeCount++;
+
             //Cal que destruim l'objecte
             Destroy(gameObject);
             //Debug.Log("Win and destroy reward");

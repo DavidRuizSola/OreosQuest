@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PowerUpController : MonoBehaviour
 {
+
+    public int grenadeCount;
+
     // Start is called before the first frame update
     void Start()
     {
+        grenadeCount = 0;
 
     }
 

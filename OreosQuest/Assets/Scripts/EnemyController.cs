@@ -16,6 +16,11 @@ public class EnemyController : MonoBehaviour
     private int mindState;
     private bool isRight;
 
+    private float playerDistance;
+
+    //volem detactar quan el juagdor esta a prop d'algun pollet
+    private PlayerController playerController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +32,13 @@ public class EnemyController : MonoBehaviour
 
         //carreguem les dades refernts a l'animació
         enemyAnim = GetComponent<Animator>();
-        
+
+        //per poder carregar la posició del juagdor
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        //volem saber si tenim el jugador a menys de 10
+        playerDistance = 5f;
+
     }
 
     // Update is called once per frame
@@ -35,6 +46,9 @@ public class EnemyController : MonoBehaviour
     {
 
         EnemyBehaviour();
+
+        //Volem saber si el jugador esta a prop
+        PlayerClose();
 
     }
 
@@ -128,5 +142,28 @@ public class EnemyController : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    void PlayerClose()
+    {
+        if (playerController.transform.position.z - transform.position.z < playerDistance)
+        {
+            if (playerController.transform.position.z - transform.position.z > -playerDistance)
+            {
+                playerController.isGrenadeReady = true;
+                Debug.Log(" ENEMY SPOTTED!!!!");
+            }
+            else
+            {
+                Debug.Log("NO ENMIES");
+                playerController.isGrenadeReady = false;
+            }
+        }
+        else
+        {
+            playerController.isGrenadeReady = false;
+            Debug.Log("NO ENMIES");
+        }
+        
     }
 }

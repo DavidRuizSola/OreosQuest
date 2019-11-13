@@ -13,12 +13,19 @@ public class GameManagerScene : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public Button reLoadButton;
     private int score;
+    private PowerUpController powerUpController;
+    private int grenadeCount;
+    public Text grenadeText;
+    public Text grenadeReady;
+    private bool isGrenadeReady;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        powerUpController = GameObject.Find("PowerUpController").GetComponent<PowerUpController>();
 
     }
 
@@ -27,6 +34,8 @@ public class GameManagerScene : MonoBehaviour
     {
         isDead = playerController.gameOver;
         score = playerController.score;
+        grenadeCount = powerUpController.grenadeCount;
+        isGrenadeReady = playerController.isGrenadeReady;
 
         if (isDead)
         {
@@ -34,6 +43,7 @@ public class GameManagerScene : MonoBehaviour
         }
 
         UpdateScore();
+        GrenadeReady();
 
     }
 
@@ -52,5 +62,18 @@ public class GameManagerScene : MonoBehaviour
     public void UpdateScore()
     {
         scoreText.text = "Score: " + score;
+        grenadeText.text = "Grenade: " + grenadeCount;
+    }
+
+    public void GrenadeReady()
+    {
+        if (isGrenadeReady)
+        {
+            grenadeReady.gameObject.SetActive(true);
+        }
+        else
+        {
+            grenadeReady.gameObject.SetActive(false);
+        }
     }
 }

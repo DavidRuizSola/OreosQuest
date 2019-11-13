@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public int score; //Anirem guardant els punts del jugador
     public bool gameOver;
     public ParticleSystem dirtParticle;
+    public bool isGrenadeReady;
 
     private float moveOreo;
 
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     isPaused = false;
     score = 0; //Anirem guardant els punts del jugador
     gameOver = false;
+    isGrenadeReady = false;
 
 
 
