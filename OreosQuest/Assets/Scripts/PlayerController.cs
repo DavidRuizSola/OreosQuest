@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     public int speed; //velocitat de moviment del oreo
     public bool isOnGround;
     public bool isOnMoving;
+    public bool isPaused;
     public int score; //Anirem guardant els punts del jugador
     public bool gameOver;
     public ParticleSystem dirtParticle;
+
+    private float moveOreo;
 
     
 
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     isOnGround = true;
     isOnMoving = false;
+    isPaused = false;
     score = 0; //Anirem guardant els punts del jugador
     gameOver = false;
 
@@ -48,14 +52,17 @@ public class PlayerController : MonoBehaviour
         if (!gameOver)
         {
 
-            float moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
+            
+           
+            moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            
 
-
+            
 
             //Fem que l'oreo es posi a correr si apretem cap a la dreta
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow) && !isPaused)
             {
                 //encarem al oreo perque es mogui cap a la dreta
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -70,7 +77,7 @@ public class PlayerController : MonoBehaviour
 
 
             }
-            else if (Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.LeftArrow) && !isPaused)
             {
                 //encarem al oreo perque es mogui cap a l'esquerra
                 transform.eulerAngles = new Vector3(0, 180, 0);
@@ -93,7 +100,7 @@ public class PlayerController : MonoBehaviour
 
 
             //Saltar al premer la barra d'espai
-            if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+            if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !isPaused)
             {
                 playerRb.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
                 isOnGround = false;
@@ -168,6 +175,7 @@ public class PlayerController : MonoBehaviour
             gameOver = true;
             
         }
+
     }
 
     void DeadGameOver()
@@ -184,12 +192,14 @@ public class PlayerController : MonoBehaviour
         playerAnim.SetBool("Jump_b", false);
     }
 
+    //funcio per enegar les particules de pols
     void ParticlePlay()
     {
         dirtParticle.Play();
     }
 
     
+    //Funcio per parar les particules de pols
     void ParticleStop ()
     {
         dirtParticle.Stop();
