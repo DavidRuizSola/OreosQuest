@@ -18,6 +18,7 @@ public class GameManagerScene : MonoBehaviour
     public Text grenadeText;
     public Text grenadeReady;
     private bool isGrenadeReady;
+    private int enemySpotted;
 
 
 
@@ -36,6 +37,7 @@ public class GameManagerScene : MonoBehaviour
         score = playerController.score;
         grenadeCount = powerUpController.grenadeCount;
         isGrenadeReady = playerController.isGrenadeReady;
+        enemySpotted = playerController.nextEnemyKill;
 
         if (isDead)
         {
@@ -65,8 +67,10 @@ public class GameManagerScene : MonoBehaviour
         grenadeText.text = "Grenade: " + grenadeCount;
     }
 
+    
     public void GrenadeReady()
     {
+
         if (isGrenadeReady)
         {
             grenadeReady.gameObject.SetActive(true);

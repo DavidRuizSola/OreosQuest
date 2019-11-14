@@ -19,36 +19,63 @@ public class PlayerController : MonoBehaviour
     public int score; //Anirem guardant els punts del jugador
     public bool gameOver;
     public ParticleSystem dirtParticle;
-    public bool isGrenadeReady;
+    public float[] playerDistance;
+    public Vector3[] enemyPos;
 
     private float moveOreo;
 
-    
+    public float enemyDistanceDetection;
+    public int nextEnemyKill;
+    public bool isGrenadeReady;
+    private int grenadeCount;
+    private PowerUpController powerUpController;
+    public GameObject grenade;
+    public Rigidbody rbGrenade;
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
 
-    isOnGround = true;
-    isOnMoving = false;
-    isPaused = false;
-    score = 0; //Anirem guardant els punts del jugador
-    gameOver = false;
-    isGrenadeReady = false;
+        isOnGround = true;
+        isOnMoving = false;
+        isPaused = false;
+        score = 0; //Anirem guardant els punts del jugador
+        gameOver = false;
+        // isGrenadeReady = true;
 
 
+        //tenim 5 enemics per tan necessitem 5 espais
+        playerDistance= new float[5];
+        //guardem la posició dels enemics
+        enemyPos = new Vector3[5];
 
-    //carreguem les opcions del rigidbody
-    playerRb = GetComponent<Rigidbody>();
-    //carreguem les opcions del animator
-    playerAnim = GetComponent<Animator>();
+        //Posem el valor del array a 100
+        for (int i = 0; i < playerDistance.Length; i++) { playerDistance[i] = 100f; }
 
+        //Assignem el valor 99 que no correspon a cap enemic
+        nextEnemyKill = 99;
+        isGrenadeReady = false;
 
+        //carreguem les opcions del rigidbody
+        playerRb = GetComponent<Rigidbody>();
+        //carreguem les opcions del animator
+        playerAnim = GetComponent<Animator>();
+
+        powerUpController = GameObject.Find("PowerUpController").GetComponent<PowerUpController>();
+   //     rbGrenade = GameObject.Find("Grenade").GetComponent<Rigidbody>();
+     //   grenade = GameObject.Find("Grenade");
     }
 
     // Update is called once per frame
     void Update()
     {
+
+      // Debug.Log(playerDistance[0]+ " !!!!!!!! ");
+      CloseEnemy();
+      grenadeCount = powerUpController.grenadeCount;
 
         //moure el Oreo cap a la dreta o cap a l'esqueraa
         if (!gameOver)
@@ -113,11 +140,21 @@ public class PlayerController : MonoBehaviour
                 
             }
 
+            //Podem premer la X per llançar una granada
+            //sempre i quan estiguem el terra, tinguen municio, i no esta pausat
+            if(Input.GetKeyDown(KeyCode.X)&& isOnGround && !isPaused && isGrenadeReady && grenadeCount>0)
+            {
+                Debug.Log("DISPARAR GRANADA!!!!");
+                GrenadeShoot();
+            }
+
 
             if (!isOnGround)
             {
                 ParticleStop();
             }
+
+            
         }
 
         //si morim
@@ -125,6 +162,8 @@ public class PlayerController : MonoBehaviour
         {
             DeadGameOver();
         }
+
+        
     }
 
     //controlem les col·lisions del nostre player
@@ -214,5 +253,102 @@ public class PlayerController : MonoBehaviour
     void ParticleStop ()
     {
         dirtParticle.Stop();
+    }
+
+    //mirem si hi ha enemics al voltant
+    void CloseEnemy()
+    {
+
+      //  Debug.Log(nextEnemyKill + " NEXT ENEMY KILL");
+
+        int closeEnemies = 0;
+
+        for(int i = 0; i < playerDistance.Length; i++)
+        {
+            if(playerDistance[i] < enemyDistanceDetection)
+            {
+                //si detectem que hi ha un enemic proper
+                closeEnemies++;
+
+                if (nextEnemyKill == 99)
+                {
+                    nextEnemyKill = i;
+                }
+                else
+                {
+                    //comprovem quina es la ditància mes petita si la que ja tenim o la que acabem de trobar
+                    if(playerDistance[i]<playerDistance[nextEnemyKill])
+                    {
+                        nextEnemyKill = i;
+                    }
+                }
+
+            }
+        }
+
+        //si detectem 1 enemic o més podem dir que tenim la granada a punt
+        if (closeEnemies == 0)
+        {
+            isGrenadeReady = false;
+            nextEnemyKill = 99;
+        }
+        else
+        {
+            isGrenadeReady = true;
+        }
+
+    }
+
+    void GrenadeShoot()
+    {
+        //restem la granada que acabem de llençar del contador
+        powerUpController.grenadeCount--;
+
+        //animem al oreo perque llanci la granada
+        playerAnim.SetInteger("Animation_int", 10);
+
+        //esperar un segon
+        GrenadeWait();
+
+
+       /* if (timerOver)
+        {
+            //Fem l'element de la granada visible
+            grenade.SetActive(true);
+
+            //hem de moure la granda fins arribar al enemic
+            //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+            // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
+            time += Time.deltaTime;
+            Vector3 pos = Vector3.Lerp(transform.position, enemyPos[nextEnemyKill], time);
+            pos.y += curve.Evaluate(time);
+            rbGrenade.transform.position = pos;
+
+
+        }*/
+
+
+    }
+
+
+    //Donem un temps de repos a l'enemic
+    void GrenadeWait()
+    {
+        StartCoroutine(EnemyWaitTime());
+    }
+
+    IEnumerator EnemyWaitTime()
+    {
+        yield return new WaitForSeconds(1);
+
+        grenade.SetActive(true);
+
+        //hem de moure la granda fins arribar al enemic
+        //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+        // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
+
+        rbGrenade.transform.position = Vector3.MoveTowards(transform.position, enemyPos[nextEnemyKill], Time.deltaTime * speed);
+
+
     }
 }
