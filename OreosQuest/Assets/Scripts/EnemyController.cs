@@ -16,9 +16,12 @@ public class EnemyController : MonoBehaviour
     private int mindState;
     private bool isRight;
     public int enemyId;
+    public bool isDead;
+    public Vector3 graveyard;
 
 
-  //  private float playerDistance;
+
+    //  private float playerDistance;
 
     //volem detactar quan el juagdor esta a prop d'algun pollet
     private PlayerController playerController;
@@ -39,7 +42,12 @@ public class EnemyController : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
         //volem saber si tenim el jugador a menys de 10
-       // playerDistance = 5f;
+        // playerDistance = 5f;
+
+        isDead = false;
+
+        //guardem la posició dels enemics morts
+        graveyard = new Vector3(-14, 1, -5);
 
     }
 
@@ -53,10 +61,28 @@ public class EnemyController : MonoBehaviour
         //Volem saber si el jugador esta a prop
         PlayerDistance();
 
+        if(isDead)
+        {
+            mindState = 4;
+        }
+
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        //si xoca contra la granada
+        if (collision.gameObject.CompareTag("Grenade"))
+        {
+
+            playerController.switchState = 4;
+            isDead = true;
+        }
+        
     }
 
-    // Fem que l'enemic es mogui cap a la dreta
-    void MoveEnemyRight()
+        // Fem que l'enemic es mogui cap a la dreta
+        void MoveEnemyRight()
     {
         enemyAnim.SetBool("Eat_b", false);
         enemyAnim.SetFloat("Speed_f", 2.0f);
@@ -99,7 +125,8 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(EnemyWaitTime());
     }
 
-    IEnumerator EnemyWaitTime()
+
+IEnumerator EnemyWaitTime()
     {
         yield return new WaitForSeconds(waitTime);
         mindState = 3;
@@ -122,6 +149,11 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    void MoveToGraveyard()
+    {
+        transform.position = graveyard;
+    }
+
     void EnemyBehaviour()
     {
         switch (mindState)
@@ -142,6 +174,10 @@ public class EnemyController : MonoBehaviour
                 EnemyRotate();
                 break;
 
+            case 4:
+                MoveToGraveyard();
+                break;
+
             default:
                 break;
         }
@@ -151,7 +187,10 @@ public class EnemyController : MonoBehaviour
     void PlayerDistance()
     {
 
-        playerController.playerDistance[enemyId] = Vector3.Distance(playerController.transform.position, transform.position);
-        playerController.enemyPos[enemyId] = transform.position;
+            playerController.playerDistance[enemyId] = Vector3.Distance(playerController.transform.position, transform.position);
+            playerController.enemyPos[enemyId] = transform.position;
+        
     }
+
+
 }

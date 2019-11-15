@@ -31,10 +31,10 @@ public class PlayerController : MonoBehaviour
     private PowerUpController powerUpController;
     public GameObject grenade;
     public Rigidbody rbGrenade;
+    public int switchState;
 
-
-
-
+  
+         
     // Start is called before the first frame update
     void Start()
     {
@@ -45,8 +45,9 @@ public class PlayerController : MonoBehaviour
         score = 0; //Anirem guardant els punts del jugador
         gameOver = false;
         // isGrenadeReady = true;
+        switchState = 0;
 
-
+       
         //tenim 5 enemics per tan necessitem 5 espais
         playerDistance= new float[5];
         //guardem la posició dels enemics
@@ -144,8 +145,9 @@ public class PlayerController : MonoBehaviour
             //sempre i quan estiguem el terra, tinguen municio, i no esta pausat
             if(Input.GetKeyDown(KeyCode.X)&& isOnGround && !isPaused && isGrenadeReady && grenadeCount>0)
             {
-                Debug.Log("DISPARAR GRANADA!!!!");
-                GrenadeShoot();
+               // Debug.Log("DISPARAR GRANADA!!!!");
+                switchState = 1;
+                
             }
 
 
@@ -161,6 +163,14 @@ public class PlayerController : MonoBehaviour
         if (gameOver)
         {
             DeadGameOver();
+        }
+
+        //si volem llançar la granada
+        if (switchState>0)
+        {
+
+          //  Debug.Log(switchState + " ESTAT SWITCH");
+            GrenadeShoot();
         }
 
         
@@ -301,32 +311,73 @@ public class PlayerController : MonoBehaviour
 
     void GrenadeShoot()
     {
-        //restem la granada que acabem de llençar del contador
-        powerUpController.grenadeCount--;
 
-        //animem al oreo perque llanci la granada
-        playerAnim.SetInteger("Animation_int", 10);
-
-        //esperar un segon
-        GrenadeWait();
-
-
-       /* if (timerOver)
+        switch (switchState)
         {
-            //Fem l'element de la granada visible
-            grenade.SetActive(true);
+            case 1:
+                //restem la granada que acabem de llençar del contador
+                powerUpController.grenadeCount--;
+                switchState = 2;
+                break;
 
-            //hem de moure la granda fins arribar al enemic
-            //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
-            // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
-            time += Time.deltaTime;
-            Vector3 pos = Vector3.Lerp(transform.position, enemyPos[nextEnemyKill], time);
-            pos.y += curve.Evaluate(time);
-            rbGrenade.transform.position = pos;
+            case 2:
+                
+
+                //animem al oreo perque llanci la granada
+                playerAnim.SetInteger("Animation_int", 10);
+                                                
+                //esperar un segon
+                GrenadeWait();
+                break;
+
+            case 3:
+                grenade.SetActive(true);
+
+                //hem de moure la granda fins arribar al enemic
+                //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
+                // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
+
+               Debug.Log("NEXT ENEMY KILL " + nextEnemyKill);
+
+                //intentem fer una trampa
+                if (nextEnemyKill == 99)
+                {
+                    switchState = 4;
+                }
+                else
+                {
+                    rbGrenade.transform.position = Vector3.MoveTowards(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime * speed * 2);
 
 
-        }*/
 
+                    if (rbGrenade.transform.position == enemyPos[nextEnemyKill])
+                    {
+                        switchState = 4;
+                    }
+                }
+
+                
+                break;
+
+            case 4:
+
+                //tornem a fer invisible la granada
+                grenade.SetActive(false);
+
+                //tornem a col·locar l'element el costat del player
+                rbGrenade.transform.position = transform.position;
+
+
+                //preparem el switch per poder tornar a llançar
+                switchState = 0;
+                break;
+
+            default:
+                break;
+
+        }
+
+     //   Debug.Log("ESTAT del SWITCH " + switchState);
 
     }
 
@@ -339,16 +390,13 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator EnemyWaitTime()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1.5f);
 
-        grenade.SetActive(true);
+        //tornem a l'oreo a la posició de repos
+        //animem al oreo perque llanci la granada
+        playerAnim.SetInteger("Animation_int", 0);
 
-        //hem de moure la granda fins arribar al enemic
-        //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
-        // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
-
-        rbGrenade.transform.position = Vector3.MoveTowards(transform.position, enemyPos[nextEnemyKill], Time.deltaTime * speed);
-
+        switchState = 3;
 
     }
 }
