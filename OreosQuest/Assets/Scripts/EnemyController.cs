@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     public int enemyId;
     public bool isDead;
     public Vector3 graveyard;
+    public ParticleSystem explosion;
 
 
 
@@ -151,6 +152,14 @@ IEnumerator EnemyWaitTime()
 
     void MoveToGraveyard()
     {
+        explosion.Play();
+        StartCoroutine(ExplosionTime());
+       // transform.position = graveyard;
+    }
+
+    IEnumerator ExplosionTime()
+    {
+        yield return new WaitForSeconds(0.1f);
         transform.position = graveyard;
     }
 

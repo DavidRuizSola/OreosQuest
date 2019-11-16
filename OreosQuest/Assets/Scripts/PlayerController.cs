@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public GameObject grenade;
     public Rigidbody rbGrenade;
     public int switchState;
+    private Vector3 powerupOffset;
 
   
          
@@ -52,6 +53,9 @@ public class PlayerController : MonoBehaviour
         playerDistance= new float[5];
         //guardem la posició dels enemics
         enemyPos = new Vector3[5];
+
+        //posem un offset a la llauna perque sempre surti de la ma del jugador
+        powerupOffset = new Vector3(-2.37f, 2.17f, 0.04f);
 
         //Posem el valor del array a 100
         for (int i = 0; i < playerDistance.Length; i++) { playerDistance[i] = 100f; }
@@ -331,7 +335,21 @@ public class PlayerController : MonoBehaviour
                 break;
 
             case 3:
+
+                //fem que la granada sigui visible
                 grenade.SetActive(true);
+
+
+                //Col·loquem la granada de la ma del oreo
+                rbGrenade.transform.position = transform.position + powerupOffset;
+
+                //canviem el següent estat
+                switchState = 4;
+
+                break;
+
+
+            case 4:
 
                 //hem de moure la granda fins arribar al enemic
                 //rbGrenade.AddForce(Vector3.up * forceJump, ForceMode.Impulse);
@@ -342,7 +360,7 @@ public class PlayerController : MonoBehaviour
                 //intentem fer una trampa
                 if (nextEnemyKill == 99)
                 {
-                    switchState = 4;
+                    switchState = 5;
                 }
                 else
                 {
@@ -352,20 +370,23 @@ public class PlayerController : MonoBehaviour
 
                     if (rbGrenade.transform.position == enemyPos[nextEnemyKill])
                     {
-                        switchState = 4;
+                        switchState = 5;
                     }
                 }
 
                 
                 break;
 
-            case 4:
+            case 5:
 
                 //tornem a fer invisible la granada
                 grenade.SetActive(false);
 
                 //tornem a col·locar l'element el costat del player
-                rbGrenade.transform.position = transform.position;
+                //  rbGrenade.transform.position = transform.position;
+
+                //Guanyem 100 punts per acabar de matar un enemic
+                score += 100;
 
 
                 //preparem el switch per poder tornar a llançar
@@ -390,7 +411,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator EnemyWaitTime()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1);
 
         //tornem a l'oreo a la posició de repos
         //animem al oreo perque llanci la granada
