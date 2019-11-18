@@ -9,9 +9,11 @@ public class OffLimit : MonoBehaviour
     public GameObject player;
     private float limit;
 
+
     // Start is called before the first frame update
     void Start()
     {
+
         //carreguem el script per poder fer gameOver
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
 
@@ -27,7 +29,8 @@ public class OffLimit : MonoBehaviour
         //vol dir que ha caigut
         if (player.transform.position.y < limit)
         {
-            playerController.gameOver = true;
+            playerController.gameOver = true;            
+
         }
         
     }

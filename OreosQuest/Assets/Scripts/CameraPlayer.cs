@@ -43,6 +43,9 @@ public class CameraPlayer : MonoBehaviour
 
        
         //si el jugador no es troba sobra d'una plataforma
+
+        
+
         if(!playerController.isOnMoving)
         {
             if (playerPos.y>jumpTreshold)// si saltem volem seguir el jugador
@@ -59,12 +62,6 @@ public class CameraPlayer : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, FollowOnMoving(), Time.deltaTime * camSpeed);
         }
-
-        
-        
-
-        
-
 
     }
 

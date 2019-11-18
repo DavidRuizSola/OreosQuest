@@ -18,13 +18,15 @@ public class GameManagerScene : MonoBehaviour
     public Text grenadeText;
     public Text grenadeReady;
     private bool isGrenadeReady;
-    private int enemySpotted;
-
+    public bool isManualOn;
+    public TextMeshProUGUI manualText;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        isManualOn = false;
+
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         powerUpController = GameObject.Find("PowerUpController").GetComponent<PowerUpController>();
 
@@ -37,7 +39,6 @@ public class GameManagerScene : MonoBehaviour
         score = playerController.score;
         grenadeCount = powerUpController.grenadeCount;
         isGrenadeReady = playerController.isGrenadeReady;
-        enemySpotted = playerController.nextEnemyKill;
 
         if (isDead)
         {
@@ -46,6 +47,7 @@ public class GameManagerScene : MonoBehaviour
 
         UpdateScore();
         GrenadeReady();
+        ManualText();
 
     }
 
@@ -80,4 +82,29 @@ public class GameManagerScene : MonoBehaviour
             grenadeReady.gameObject.SetActive(false);
         }
     }
+
+    public void ManualButton()
+    {
+        if (isManualOn)
+        {
+            isManualOn = false;
+        }
+        else
+        {
+            isManualOn = true;
+        }
+    }
+
+    void ManualText()
+    {
+        if (isManualOn)
+        {
+            manualText.text = "Manual is On";
+        }
+        else
+        {
+            manualText.text = "Manual is Of";
+        }
+    }
+
 }

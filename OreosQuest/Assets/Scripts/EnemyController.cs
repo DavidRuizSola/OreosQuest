@@ -21,7 +21,6 @@ public class EnemyController : MonoBehaviour
     public ParticleSystem explosion;
 
 
-
     //  private float playerDistance;
 
     //volem detactar quan el juagdor esta a prop d'algun pollet
@@ -153,14 +152,17 @@ IEnumerator EnemyWaitTime()
     void MoveToGraveyard()
     {
         explosion.Play();
+
         StartCoroutine(ExplosionTime());
-       // transform.position = graveyard;
+        // transform.position = graveyard;
+
     }
 
     IEnumerator ExplosionTime()
     {
         yield return new WaitForSeconds(0.1f);
         transform.position = graveyard;
+        
     }
 
     void EnemyBehaviour()

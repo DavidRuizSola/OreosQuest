@@ -17,6 +17,10 @@ public class BombController : MonoBehaviour
     //
     private PlayerController playerController;
 
+    //variables d'audio
+    private AudioSource playerAudio;
+    public AudioClip bombExplosion;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +33,9 @@ public class BombController : MonoBehaviour
 
         //carreguem
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+
+        //inicialitzem la varible del so
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -52,7 +59,7 @@ public class BombController : MonoBehaviour
     void BombRoutine()
     {
         //Definim tots els estats un cop s'activa la bomba pel pas del personatge
-
+        
         switch (enemyState)
         {
             //primer engeguem el fum
@@ -70,6 +77,10 @@ public class BombController : MonoBehaviour
             case 2:
                 smokeParticle.Stop();
                 explosionParticle.Play();
+
+                //posem l'audio de l'explosio de la bomba
+                playerAudio.PlayOneShot(bombExplosion, 1f);
+
 
                 // si estem dins del rang en el moment de l'explosio posem a Gameover
                 if ((playerPos.z > transform.position.z - enemyRange) && (playerPos.z < transform.position.z + enemyRange))

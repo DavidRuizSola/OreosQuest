@@ -34,7 +34,17 @@ public class PlayerController : MonoBehaviour
     public int switchState;
     private Vector3 powerupOffset;
 
-  
+    //afegim els sons
+
+    private AudioSource playerAudio;
+    public AudioClip jumpSound;
+    public AudioClip rewardSound;
+    public AudioClip powerupSound;
+    public AudioClip grenadeSound;
+    public AudioClip gameOverSound;
+    public AudioClip chickenExplosion;
+
+    private bool once;
          
     // Start is called before the first frame update
     void Start()
@@ -45,6 +55,7 @@ public class PlayerController : MonoBehaviour
         isPaused = false;
         score = 0; //Anirem guardant els punts del jugador
         gameOver = false;
+        once = true;
         // isGrenadeReady = true;
         switchState = 0;
 
@@ -70,8 +81,11 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
 
         powerUpController = GameObject.Find("PowerUpController").GetComponent<PowerUpController>();
-   //     rbGrenade = GameObject.Find("Grenade").GetComponent<Rigidbody>();
-     //   grenade = GameObject.Find("Grenade");
+        //     rbGrenade = GameObject.Find("Grenade").GetComponent<Rigidbody>();
+        //   grenade = GameObject.Find("Grenade");
+
+        //inicialitzem les els components del so
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -141,6 +155,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("terra");
                 //posem l'animacio de saltar
                 playerAnim.SetBool("Jump_b", true);
+                playerAudio.PlayOneShot(jumpSound, 1f);
 
                 
             }
@@ -222,6 +237,9 @@ public class PlayerController : MonoBehaviour
             //sumem 10 punts si recollim una poma
             score += 10;
             //Debug.Log(score);
+
+            //posem laudio de tocar un reward
+            playerAudio.PlayOneShot(rewardSound, 1f);
         }
 
         //si xoca contra una powerup
@@ -230,6 +248,9 @@ public class PlayerController : MonoBehaviour
             //sumem 10 punts si recollim una poma
             score += 50;
             //Debug.Log(score);
+
+            //audio de recollir un powerup
+            playerAudio.PlayOneShot(powerupSound, 1f);
         }
 
         //si xoquem contra un enemic hem de morir
@@ -237,7 +258,6 @@ public class PlayerController : MonoBehaviour
         {
             //l'estat passa a ser de GameOver
             gameOver = true;
-            
         }
 
     }
@@ -249,6 +269,15 @@ public class PlayerController : MonoBehaviour
         //Activem l'animacio de morir
         playerAnim.SetBool("Death_b", true);
         playerAnim.SetInteger("DeathType_int", 2);
+
+        if (once)
+        {
+
+            //posem el so de gameover
+            playerAudio.PlayOneShot(gameOverSound, 1f);
+
+            once = false;
+        }
     }
 
     void NoJump()
@@ -339,6 +368,9 @@ public class PlayerController : MonoBehaviour
                 //fem que la granada sigui visible
                 grenade.SetActive(true);
 
+                //engeguem el so de llençar la granada
+                playerAudio.PlayOneShot(grenadeSound, 1f);
+
 
                 //Col·loquem la granada de la ma del oreo
                 rbGrenade.transform.position = transform.position + powerupOffset;
@@ -356,6 +388,7 @@ public class PlayerController : MonoBehaviour
                 // rbGrenade.transform.position = Vector3.Lerp(rbGrenade.transform.position, enemyPos[nextEnemyKill], Time.deltaTime);
 
                Debug.Log("NEXT ENEMY KILL " + nextEnemyKill);
+                playerAnim.SetInteger("Animation_int", 0);
 
                 //intentem fer una trampa
                 if (nextEnemyKill == 99)
@@ -387,7 +420,8 @@ public class PlayerController : MonoBehaviour
 
                 //Guanyem 100 punts per acabar de matar un enemic
                 score += 100;
-
+                //Reproduim el so de lexplosio
+                playerAudio.PlayOneShot(chickenExplosion, 1f);
 
                 //preparem el switch per poder tornar a llançar
                 switchState = 0;
@@ -411,11 +445,11 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator EnemyWaitTime()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.8f);
 
         //tornem a l'oreo a la posició de repos
         //animem al oreo perque llanci la granada
-        playerAnim.SetInteger("Animation_int", 0);
+        //playerAnim.SetInteger("Animation_int", 0);
 
         switchState = 3;
 

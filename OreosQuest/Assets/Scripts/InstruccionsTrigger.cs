@@ -10,6 +10,7 @@ public class InstruccionsTrigger : MonoBehaviour
     public Instructions dialogue3;
     public Instructions dialogue4;
     public Instructions dialogue5;
+    public Instructions dialogue6;
 
     public bool manualIsOn;
     public int manualNumber;
@@ -51,6 +52,11 @@ public class InstruccionsTrigger : MonoBehaviour
 
                 case 5:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue5);
+                    manualIsOn = false;
+                    break;
+
+                case 6:
+                    FindObjectOfType<InstructionsManager>().StartDialogue(dialogue6);
                     manualIsOn = false;
                     break;
 
