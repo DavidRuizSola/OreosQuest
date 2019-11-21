@@ -22,7 +22,7 @@ public class FinalControlScene : MonoBehaviour
     //per poder fer caure les pomes
     public GameObject apple;
     private Vector3 applePos;
-    public int score;
+    private int score;
     public float repeatRate;
     private bool appleReady;
     private int appleCount;
@@ -49,6 +49,8 @@ public class FinalControlScene : MonoBehaviour
     {
         //posem l'estat del switch del oreo
         oreoState = 0;
+        //carreguem la puntcio que ha conseguit l'Oreo
+        score = PlayerPrefs.GetInt("Score");
         //carreguem les caracteristiques danimacio
         playerAnim= GameObject.Find("Player").GetComponent<Animator>();
         //la posicio on oreo deixa d'avançar

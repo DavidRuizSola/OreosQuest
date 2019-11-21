@@ -69,7 +69,7 @@ public class GameManagerScene : MonoBehaviour
         grenadeText.text = "Grenade: " + grenadeCount;
     }
 
-    
+
     public void GrenadeReady()
     {
 
@@ -107,4 +107,17 @@ public class GameManagerScene : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        //si xoca contra la granada
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //guardem la puntuacio per poder-la ensenyar en la següent escena
+            PlayerPrefs.SetInt("Score", score);
+
+            //carreguem l'escena final del joc
+            SceneManager.LoadScene("FinalScene", LoadSceneMode.Single);
+        }
+    }
 }

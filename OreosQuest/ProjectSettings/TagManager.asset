@@ -11,6 +11,7 @@ TagManager:
   - Moving
   - Powerup
   - Grenade
+  - Endgame
   layers:
   - Default
   - TransparentFX
