@@ -29,11 +29,18 @@ public class FinalControlScene : MonoBehaviour
 
     //per poder moure la camara
     public GameObject camara;
+    private bool isFirst;
     public float speedCamara;
-    private Vector3 camaraPosIni;
-    private Quaternion camaraRotIni;
     private Vector3 camaraPos1;
     private Quaternion camaraRot1;
+    private Vector3 camaraPos2;
+    private Quaternion camaraRot2;
+    private Vector3 camaraPos3;
+    private Quaternion camaraRot3;
+    private Vector3 camaraPos4;
+    private Quaternion camaraRot4;
+    private Vector3 camaraPos5;
+    private Quaternion camaraRot5;
 
 
 
@@ -54,17 +61,35 @@ public class FinalControlScene : MonoBehaviour
         animalPos = new Vector3(2.9f, 8f, 79.4f);
 
         //carreguem la posicio inicial de les pomes
-        applePos = new Vector3(0, 20, 88);
+        applePos = new Vector3(0, 20, 76);
         appleReady = true;
         appleCount = 0;
 
         //carreguem la camara a la posicio inicial
         //controlem el moviment de la camara
+        isFirst = true;
+        //escena 1
         camara.transform.position = new Vector3(0.7f, 11.6f, 55.2f);
         camara.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         camaraPos1 = new Vector3(0.7f, 10.6f, 65.1f);
         camaraRot1 = Quaternion.Euler(22.25f, 11.985f, 2.487f);
+
+        //escena2
+        camaraPos2 = new Vector3(2.1f, 11.6f, 93f);
+        camaraRot2 = Quaternion.Euler(0f, 227f, 0f);
+
+        camaraPos3 = new Vector3(6.9f, 12f, 82f);
+        camaraRot3 = Quaternion.Euler(30f, 213f, 0f);
+
+        //escena3
+        camaraPos4 = new Vector3(8.5f, 9.4f, 71.4f);
+        camaraRot4 = Quaternion.Euler(4f, 317, 0);
+
+        camaraPos5 = new Vector3(8.5f, 16.1f, 71.4f);
+        camaraRot5 = Quaternion.Euler(29.7f, 317, 0);
+
+
 
     }
 
@@ -156,10 +181,28 @@ public class FinalControlScene : MonoBehaviour
 
         animal.transform.position = Vector3.MoveTowards(animal.transform.position, animalPos, speedAnimal * Time.deltaTime);
 
+
+
+        //controlem el moviment de la camara
+        //posem la camara a la posicio inicial
+        if (isFirst)
+        {
+            camara.transform.position = camaraPos2;
+            camara.transform.rotation = camaraRot2;
+
+            isFirst = false;
+        }
+
+        camara.transform.position = Vector3.MoveTowards(camara.transform.position, camaraPos3, speedCamara * Time.deltaTime);
+        camara.transform.rotation = Quaternion.Slerp(camara.transform.rotation, camaraRot3, speedCamara/4 * Time.deltaTime);
+
+
         //Comprovem si hem arribat al final
         if (animal.transform.position == animalPos)
         {
             oreoState = 3;
+
+            isFirst = true;
         }
     }
 
@@ -209,8 +252,23 @@ public class FinalControlScene : MonoBehaviour
         if (score == 0)
         {
             oreoState = 6;
+            isFirst = true;
         }
-        
+
+        //controlem el moviment de la camara
+        //posem la camara a la posicio inicial
+        if (isFirst)
+        {
+            camara.transform.position = camaraPos4;
+            camara.transform.rotation = camaraRot4;
+
+            isFirst = false;
+        }
+
+        camara.transform.position = Vector3.MoveTowards(camara.transform.position, camaraPos5, speedCamara/16 * Time.deltaTime);
+        camara.transform.rotation = Quaternion.Slerp(camara.transform.rotation, camaraRot5, speedCamara/32 * Time.deltaTime);
+
+
     }
 
     IEnumerator AppleWait1()
