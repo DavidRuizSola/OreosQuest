@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public bool isGrenadeReady;
     private int grenadeCount;
     private PowerUpController powerUpController;
+    private GameManagerScene gameManagerScene;
     public GameObject grenade;
     public Rigidbody rbGrenade;
     public int switchState;
@@ -50,9 +51,11 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
+        gameManagerScene = GameObject.Find("GameManager").GetComponent<GameManagerScene>();
+
         isOnGround = true;
         isOnMoving = false;
-        isPaused = false;
+        
         score = 0; //Anirem guardant els punts del jugador
         gameOver = false;
         once = true;
@@ -91,6 +94,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        isPaused = gameManagerScene.isPaused;
 
       // Debug.Log(playerDistance[0]+ " !!!!!!!! ");
       CloseEnemy();

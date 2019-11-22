@@ -14,14 +14,18 @@ public class InstructionsManager : MonoBehaviour
 
     private Queue <string> sentences;
 
+    private InstruccionsTrigger instruccionsTrigger;
+
     //per poder posar el jugador en pausa
-    public PlayerController playerController;
+    private GameManagerScene gameManagerScene;
 
 
     // Start is called before the first frame update
     void Start()
     {
         sentences = new Queue<string>();
+        gameManagerScene = GameObject.Find("GameManager").GetComponent<GameManagerScene>();
+     //   instruccionsTrigger = GameObject.Find("Manual").GetComponent<InstruccionsTrigger>();
     }
 
     public void StartDialogue (Instructions dialogue)
@@ -30,7 +34,10 @@ public class InstructionsManager : MonoBehaviour
         //Engeguem l'animació perque aparegui el text
         animator.SetBool("isOpen", true);
         //posem el jugador en pausa
-        playerController.isPaused = true;
+        gameManagerScene.isPaused = true;
+
+        //indiquem que tenim la pantalla plena
+        gameManagerScene.busyScreen = true;
 
 
         //Modifiquem el titol del text per mostrar el titol de la instrucció
@@ -52,6 +59,7 @@ public class InstructionsManager : MonoBehaviour
 
     public void DisplayNextSentence ()
     {
+
         if (sentences.Count == 0)
         {
             EndDialogue();
@@ -62,14 +70,14 @@ public class InstructionsManager : MonoBehaviour
         dialogueText.text = sentence;
     }
 
-
     void EndDialogue()
     {
         // si estem al ultim text apliquem l'animació que elimina el text
-        Debug.Log("End of conversation.");
         animator.SetBool("isOpen", false);
+        //treiem la marca que ens indica que tenim un text en pantalla
+        gameManagerScene.busyScreen = false;
         //Treiem la pausa del juagdor
-        playerController.isPaused = false;
+        gameManagerScene.isPaused = false;
         
     }
  

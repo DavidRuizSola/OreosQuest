@@ -19,13 +19,49 @@ public class GameManagerScene : MonoBehaviour
     public Text grenadeReady;
     private bool isGrenadeReady;
     public bool isManualOn;
-    public TextMeshProUGUI manualText;
+    public bool isMusicOn;
+    public bool isPaused;
+    public AudioSource backgroundMusic;
+    public TextMeshProUGUI optionsButton;
+    private bool isOptionOpen;
+    public Text musicOption;
+    public Text tutorialOption;
+    public TextMeshProUGUI musicButton;
+    public TextMeshProUGUI tutorialButton;
+    public GameObject optionsPanel;
+    public bool busyScreen;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        isManualOn = false;
+
+        isPaused = false;
+        isOptionOpen = false;
+        busyScreen = false;
+
+        //carreguem les opcions del joc que hem guardat en la escena anterior
+        if (PlayerPrefs.GetInt("Tutorial") == 1)
+        {
+            isManualOn = true;
+        }
+        else
+        {
+            isManualOn = false;
+        }
+
+        //carreguem les opcions del joc pel que fa a l'audio i engeguem o parem la musica
+        if(PlayerPrefs.GetInt("Audio") == 1)
+        {
+            isMusicOn = true;
+            backgroundMusic.Play();
+        }
+        else
+        {
+            isMusicOn = false;
+            backgroundMusic.Pause();
+        }
 
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         powerUpController = GameObject.Find("PowerUpController").GetComponent<PowerUpController>();
@@ -47,7 +83,6 @@ public class GameManagerScene : MonoBehaviour
 
         UpdateScore();
         GrenadeReady();
-        ManualText();
 
     }
 
@@ -83,7 +118,64 @@ public class GameManagerScene : MonoBehaviour
         }
     }
 
-    public void ManualButton()
+    public void OptionsMenu()
+    {
+
+        //sempre que no hi hagi carregades les instruccions a la pantalla
+        //si no fem aixo els manuals quedaran superposasts
+        if (!busyScreen)
+        {
+            //si el panell d'opcions esta tancat i fem clic
+            //significa que hem de parar el joc i obrir el panell de les opcions
+            if (!isOptionOpen)
+            {
+                optionsPanel.SetActive(true);
+                isOptionOpen = true;
+                //posem el joc en pausa
+                isPaused = true;
+
+                //consultem les opcions escollides i modifquem el text
+                ChechTextOptins();
+
+                //modifquem el text del boto de les opcions
+                optionsButton.text = "Close";
+            }
+            else
+            {
+                isOptionOpen = false;
+                //treiem la pausa del joc
+                isPaused = false;
+                //tornem a moficar el text del boto
+                optionsButton.text = "Options";
+
+                //guardem les opcions que hem escollit
+                SavePrefs();
+
+                //tornem a amagar el panell amb les opcions
+                optionsPanel.SetActive(false);
+            }
+        }
+    }
+
+    //Quan cliquem el boto de la musica
+    public void MusicOptions()
+    {
+        if(isMusicOn)
+        {
+            isMusicOn = false;
+            backgroundMusic.Pause();
+        }
+        else
+        {
+            isMusicOn = true;
+            backgroundMusic.Play();
+        }
+
+        ChechTextOptins();
+    }
+
+    //Quan cliquem el boto del manual
+    public void TutorialOptions()
     {
         if (isManualOn)
         {
@@ -93,20 +185,59 @@ public class GameManagerScene : MonoBehaviour
         {
             isManualOn = true;
         }
+
+        ChechTextOptins();
     }
 
-    void ManualText()
+    void ChechTextOptins()
     {
-        if (isManualOn)
+        if (isMusicOn)
         {
-            manualText.text = "Manual is On";
+            musicOption.text = "Music is ON";
+            musicButton.text = "OFF";
         }
         else
         {
-            manualText.text = "Manual is Of";
+            musicOption.text = "Music is OFF";
+            musicButton.text = "ON";
+        }
+
+        if (isManualOn)
+        {
+            tutorialOption.text = "Tutorial is ON";
+            tutorialButton.text = "OFF";
+        }
+        else
+        {
+            tutorialOption.text = "Tutorial is OFF";
+            tutorialButton.text = "ON";
         }
     }
 
+    void SavePrefs()
+    {
+        if (isMusicOn)
+        {
+            PlayerPrefs.SetInt("Audio", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Audio", 0);
+        }
+
+        if (isManualOn)
+        {
+            PlayerPrefs.SetInt("Tutorial", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("Tutorial", 0);
+        }
+        
+    }
+
+
+    //Detectem que el jugador ha arribat fins el final y cal carregar l'escena del final
     private void OnCollisionEnter(Collision collision)
     {
 

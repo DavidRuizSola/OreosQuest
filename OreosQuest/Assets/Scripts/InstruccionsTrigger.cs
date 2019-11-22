@@ -12,13 +12,14 @@ public class InstruccionsTrigger : MonoBehaviour
     public Instructions dialogue5;
     public Instructions dialogue6;
 
-    public bool manualIsOn;
+    public bool textOnScreen;
     public int manualNumber;
+    
 
     void Start()
     {
 
-        manualIsOn = false;
+        textOnScreen = false;
         manualNumber = 0;
         
     }
@@ -26,38 +27,38 @@ public class InstruccionsTrigger : MonoBehaviour
     void Update()
     {
 
-        if(manualIsOn)
+        if(textOnScreen)
         {
             switch (manualNumber)
             {
                 case 1:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue1);
-                   manualIsOn = false;
+                   textOnScreen = false;
                     break;
 
                 case 2:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue2);
-                    manualIsOn = false;
+                    textOnScreen = false;
                     break;
 
                 case 3:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue3);
-                    manualIsOn = false;
+                    textOnScreen = false;
                     break;
 
                 case 4:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue4);
-                    manualIsOn = false;
+                    textOnScreen = false;
                     break;
 
                 case 5:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue5);
-                    manualIsOn = false;
+                    textOnScreen = false;
                     break;
 
                 case 6:
                     FindObjectOfType<InstructionsManager>().StartDialogue(dialogue6);
-                    manualIsOn = false;
+                    textOnScreen = false;
                     break;
 
                 default:

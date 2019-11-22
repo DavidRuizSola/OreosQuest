@@ -32,7 +32,7 @@ public class DestroyManual : MonoBehaviour
             {
 
                 //engeguem el manual d'instruccions
-                instruccionsTrigger.manualIsOn = true;
+                instruccionsTrigger.textOnScreen = true;
                 //indiquem quin numero de manual hem d'indicar
                 instruccionsTrigger.manualNumber = manualNumber;
 

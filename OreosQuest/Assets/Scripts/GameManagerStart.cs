@@ -89,14 +89,14 @@ public class GameManagerStart : MonoBehaviour
         if (isAudio==1)
         {
             //modifiquem el text i posem pausem l'audio
-            audioText.text = "Audio is ON";
+            audioText.text = "Music is ON";
             backgroundMusic.Play();
             audioButton.text = "OFF";
         }
         else
         {
             //modifiquem l'audio i el tornem a posar en play
-            audioText.text = "Audio is OFF";
+            audioText.text = "Music is OFF";
             backgroundMusic.Pause();
             audioButton.text = "ON";
         }
