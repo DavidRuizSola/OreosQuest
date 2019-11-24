@@ -133,6 +133,8 @@ public class GameManagerScene : MonoBehaviour
                 isOptionOpen = true;
                 //posem el joc en pausa
                 isPaused = true;
+                //posemn el temps a 0
+                Time.timeScale = 0;
 
                 //consultem les opcions escollides i modifquem el text
                 ChechTextOptins();
@@ -145,6 +147,8 @@ public class GameManagerScene : MonoBehaviour
                 isOptionOpen = false;
                 //treiem la pausa del joc
                 isPaused = false;
+                //posemn el temps a 1
+                Time.timeScale = 1;
                 //tornem a moficar el text del boto
                 optionsButton.text = "Options";
 

@@ -21,6 +21,7 @@ public class BombController : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip bombExplosion;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,24 +37,25 @@ public class BombController : MonoBehaviour
 
         //inicialitzem la varible del so
         playerAudio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        playerPos = player.transform.position;
+            playerPos = player.transform.position;
 
-        //Volem que les bombes s'activin quan tenen el player a prop
-        if ((playerPos.z > transform.position.z - enemyRange)&& (playerPos.z < transform.position.z + enemyRange))
-        {
-            //entrem dins de la zona de la bomba i per tan la podem activar
-            activateBomb=true;
-        }
+            //Volem que les bombes s'activin quan tenen el player a prop
+            if ((playerPos.z > transform.position.z - enemyRange) && (playerPos.z < transform.position.z + enemyRange))
+            {
+                //entrem dins de la zona de la bomba i per tan la podem activar
+                activateBomb = true;
+            }
 
-        if(activateBomb)
-        {
-            BombRoutine();
-        }
+            if (activateBomb)
+            {
+                BombRoutine();
+            }
     }
 
     void BombRoutine()

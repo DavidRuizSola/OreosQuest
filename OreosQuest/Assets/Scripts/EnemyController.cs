@@ -19,12 +19,10 @@ public class EnemyController : MonoBehaviour
     public bool isDead;
     public Vector3 graveyard;
     public ParticleSystem explosion;
-
-
-    //  private float playerDistance;
-
     //volem detactar quan el juagdor esta a prop d'algun pollet
     private PlayerController playerController;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,23 +47,22 @@ public class EnemyController : MonoBehaviour
         //guardem la posició dels enemics morts
         graveyard = new Vector3(-14, 1, -5);
 
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+            EnemyBehaviour();
 
-        EnemyBehaviour();
+            //Volem saber si el jugador esta a prop
+            PlayerDistance();
 
-        //Volem saber si el jugador esta a prop
-        PlayerDistance();
-
-        if(isDead)
-        {
-            mindState = 4;
-        }
-
+            if (isDead)
+            {
+                mindState = 4;
+            }
     }
     
     private void OnCollisionEnter(Collision collision)
