@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FinalControlScene : MonoBehaviour
 {
@@ -42,21 +45,65 @@ public class FinalControlScene : MonoBehaviour
     private Vector3 camaraPos5;
     private Quaternion camaraRot5;
 
+    //opcions de musica
+    private bool isMusicOn;
+    public AudioSource backgroundMusic;
+    private AudioSource sounds;
+    public AudioClip rewardSound;
+
+    //opcions per poder mostrar el marcador
+    public GameObject sign;
+    public Text bestScoreText;
+    public Text currentScoreText;
+    private int bestScore;
+    public Text actualText;
+    private int oficialScore;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+
+
+        //carreguem les opcions de musica
+        //carreguem les opcions del joc pel que fa a l'audio i engeguem o parem la musica
+        if (PlayerPrefs.GetInt("Audio") == 1)
+        {
+            isMusicOn = true;
+            backgroundMusic.Play();
+        }
+        else
+        {
+            isMusicOn = false;
+            backgroundMusic.Pause();
+        }
+
+        //carreguem la millor puntuacio
+        if (!PlayerPrefs.HasKey("BestScore"))
+        {
+            bestScore = 0;
+        }
+        else
+        {
+            bestScore = PlayerPrefs.GetInt("BestScore");
+        }
+
+
         //posem l'estat del switch del oreo
         oreoState = 0;
         //carreguem la puntcio que ha conseguit l'Oreo
         score = PlayerPrefs.GetInt("Score");
+        oficialScore= PlayerPrefs.GetInt("Score");
+
         //carreguem les caracteristiques danimacio
-        playerAnim= GameObject.Find("Player").GetComponent<Animator>();
+        playerAnim = GameObject.Find("Player").GetComponent<Animator>();
         //la posicio on oreo deixa d'avançar
         oreoPos = new Vector3(4.56f, 8f, 73f);
+        //agafem el component de l'audio
+        sounds = GameObject.Find("FinalController").GetComponent<AudioSource>();
 
-
+        
         //carreguem les caracteristiques danimacio
         animalAnim = GameObject.Find("Moose").GetComponent<Animator>();
         //la posicio on oreo deixa d'avançar
@@ -134,7 +181,7 @@ public class FinalControlScene : MonoBehaviour
                 break;
 
             case 6:
-                Debug.Log("HOLA!!!");
+                DisplayScore();
                 break;
 
             default:
@@ -229,6 +276,13 @@ public class FinalControlScene : MonoBehaviour
     //oreo state 5
     void OreoWalkSpawnApples()
     {
+        //mostrem el menu contador
+        sign.SetActive(true);
+
+        //mostrem els valors del marcador
+        bestScoreText.text = ""+ bestScore;
+        currentScoreText.text = "" + appleCount;
+
         if (appleReady&& score>0)
         {
             Instantiate(apple, applePos, apple.transform.rotation);
@@ -249,6 +303,8 @@ public class FinalControlScene : MonoBehaviour
             
             appleReady = false;
             score--;
+            //posem laudio de tocar un reward
+            sounds.PlayOneShot(rewardSound, 1f);
         }
 
         if (score == 0)
@@ -281,17 +337,37 @@ public class FinalControlScene : MonoBehaviour
 
     IEnumerator AppleWait2()
     {
-        yield return new WaitForSeconds(repeatRate/2);
+        yield return new WaitForSeconds(repeatRate/8);
         appleReady = true;
     }
 
     IEnumerator AppleWait3()
     {
-        yield return new WaitForSeconds(repeatRate/3);
+        yield return new WaitForSeconds(repeatRate/16);
         appleReady = true;
     }
 
     //oreo state 6
+    void DisplayScore()
+    {
+        currentScoreText.text = ""+ oficialScore;
+        if (oficialScore > bestScore)
+        {
+            actualText.text = "FELICITAS, NOU RECORD!!!";
+        }
+    }
+
+    public void RePlay()
+    {
+        //Guardem la puntuacio si lactual es mes gran
+        if(oficialScore > bestScore)
+        {
+            PlayerPrefs.SetInt("BestScore", oficialScore);
+        }
+
+        //carreguem la escena per tornar a fer una partida nova
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+    }
 
 }
 

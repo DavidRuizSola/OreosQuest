@@ -30,6 +30,7 @@ public class GameManagerScene : MonoBehaviour
     public TextMeshProUGUI tutorialButton;
     public GameObject optionsPanel;
     public bool busyScreen;
+    private float endPosition;
 
 
 
@@ -40,6 +41,7 @@ public class GameManagerScene : MonoBehaviour
         isPaused = false;
         isOptionOpen = false;
         busyScreen = false;
+        endPosition = 224f;
 
         //carreguem les opcions del joc que hem guardat en la escena anterior
         if (PlayerPrefs.GetInt("Tutorial") == 1)
@@ -83,13 +85,14 @@ public class GameManagerScene : MonoBehaviour
 
         UpdateScore();
         GrenadeReady();
+        isEndGame();
 
     }
 
 
     public void ReLoad()
     {
-        SceneManager.LoadScene("Start", LoadSceneMode.Single);
+        SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 
     public void GameOverScreen()
@@ -118,7 +121,7 @@ public class GameManagerScene : MonoBehaviour
         }
     }
 
-    public void OptionsMenu()
+    public void OptionsMenuOpen()
     {
 
         //sempre que no hi hagi carregades les instruccions a la pantalla
@@ -126,9 +129,7 @@ public class GameManagerScene : MonoBehaviour
         if (!busyScreen)
         {
             //si el panell d'opcions esta tancat i fem clic
-            //significa que hem de parar el joc i obrir el panell de les opcions
-            if (!isOptionOpen)
-            {
+
                 optionsPanel.SetActive(true);
                 isOptionOpen = true;
                 //posem el joc en pausa
@@ -138,27 +139,25 @@ public class GameManagerScene : MonoBehaviour
 
                 //consultem les opcions escollides i modifquem el text
                 ChechTextOptins();
+        }
+    }
 
-                //modifquem el text del boto de les opcions
-                optionsButton.text = "Close";
-            }
-            else
-            {
+    public void OptionsMenuClose()
+    {
+
+        //sempre que no hi hagi carregades les instruccions a la pantalla
+        //si no fem aixo els manuals quedaran superposasts
                 isOptionOpen = false;
                 //treiem la pausa del joc
                 isPaused = false;
                 //posemn el temps a 1
                 Time.timeScale = 1;
-                //tornem a moficar el text del boto
-                optionsButton.text = "Options";
 
                 //guardem les opcions que hem escollit
                 SavePrefs();
 
                 //tornem a amagar el panell amb les opcions
                 optionsPanel.SetActive(false);
-            }
-        }
     }
 
     //Quan cliquem el boto de la musica
@@ -242,11 +241,11 @@ public class GameManagerScene : MonoBehaviour
 
 
     //Detectem que el jugador ha arribat fins el final y cal carregar l'escena del final
-    private void OnCollisionEnter(Collision collision)
+    void isEndGame()
     {
 
         //si xoca contra la granada
-        if (collision.gameObject.CompareTag("Player"))
+        if (GameObject.Find("Player").transform.position.z>endPosition)
         {
             //guardem la puntuacio per poder-la ensenyar en la següent escena
             PlayerPrefs.SetInt("Score", score);
