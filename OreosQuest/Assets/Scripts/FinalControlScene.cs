@@ -365,6 +365,10 @@ public class FinalControlScene : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", oficialScore);
         }
 
+        //Forcem que no volem veure mes els tutorials.
+        //a la segona vegada ja no els volem mes
+        PlayerPrefs.SetInt("Tutorial", 0);
+
         //carreguem la escena per tornar a fer una partida nova
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }

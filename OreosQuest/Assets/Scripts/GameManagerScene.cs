@@ -9,7 +9,7 @@ public class GameManagerScene : MonoBehaviour
 {
     private PlayerController playerController;
     private bool isDead;
-    public TextMeshProUGUI gameOverText;
+    public Text gameOverText;
     public TextMeshProUGUI scoreText;
     public Button reLoadButton;
     private int score;
@@ -92,6 +92,12 @@ public class GameManagerScene : MonoBehaviour
 
     public void ReLoad()
     {
+
+        //el segon cop que juguem ja ja volem veure el tutorial
+        //el desactivem per defecte
+        PlayerPrefs.SetInt("Tutorial", 0);
+
+        //Tornem a carregar l'escena
         SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
     }
 

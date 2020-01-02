@@ -28,6 +28,19 @@ public class InstructionsManager : MonoBehaviour
      //   instruccionsTrigger = GameObject.Find("Manual").GetComponent<InstruccionsTrigger>();
     }
 
+    void Update()
+    {
+        //volem que el juagador pugui avançar si es toca la tecla k
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            //passem el següent tros de tutorial
+            DisplayNextSentence();
+
+        }
+
+
+    }
+
     public void StartDialogue (Instructions dialogue)
     {
 
@@ -38,6 +51,8 @@ public class InstructionsManager : MonoBehaviour
 
         //indiquem que tenim la pantalla plena
         gameManagerScene.busyScreen = true;
+
+        
 
 
         //Modifiquem el titol del text per mostrar el titol de la instrucció
@@ -68,6 +83,8 @@ public class InstructionsManager : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         dialogueText.text = sentence;
+
+
     }
 
     void EndDialogue()
@@ -78,6 +95,7 @@ public class InstructionsManager : MonoBehaviour
         gameManagerScene.busyScreen = false;
         //Treiem la pausa del juagdor
         gameManagerScene.isPaused = false;
+
         
     }
  
