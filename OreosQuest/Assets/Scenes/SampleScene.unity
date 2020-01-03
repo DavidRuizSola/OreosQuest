@@ -519,6 +519,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3d9160fa9fac894da21c01c11514990, type: 3}
+--- !u!1 &30300974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30300975}
+  - component: {fileID: 30300976}
+  m_Layer: 0
+  m_Name: ZonaSalt (11)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30300975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30300974}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 106.678, y: -1.497, z: 13.509}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &30300976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 30300974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.14295964}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.01979067}
 --- !u!1001 &32533193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1128,6 +1172,9 @@ Transform:
   - {fileID: 1165629425}
   - {fileID: 1925854817}
   - {fileID: 1829655808}
+  - {fileID: 1379111319}
+  - {fileID: 1295377457}
+  - {fileID: 2054241868}
   m_Father: {fileID: 1784320746}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1347,12 +1394,10 @@ MonoBehaviour:
   dialogue1:
     name: Benvinguts
     sentences:
-    - "L'Oreo viu en una casa amb els seus animals en una punta del bosc.\t"
-    - Oreo necessita travessar el bosc per poder donar de menjar a uns animals que
-      es troben a l'altre punta.
-    - Ajuda a l'Oreo a travessar el bosc. El cami esta ple d'obstacles.
-    - Intenta recollir totes les pomes que trobras pel cami per obtenir una millor
-      puntuacio i poder alimentar els animals.
+    - L'Oreo viu amb els seus animals en una punta del bosc. Necessita atravessar
+      el bosc per poder donar de menjar els animals salvatges del final del bosc.
+    - 'Intenta recollir totes les pomes per poder alimentar els animals i obtenir
+      una millor puntuacio. '
     - ALERTA! El cami esta farcit d'enemics que hauras d'evitar si no vols morir.
     - Utilitza les fletxes dreta i esquerra del teclat per fer moure l'Oreo.
   dialogue2:
@@ -1374,8 +1419,8 @@ MonoBehaviour:
   dialogue6:
     name: Beguda Energetica
     sentences:
-    - Recull les llaunes de beguda energetica i aconsegueix 50 punts extres.
-    - "Les llaunes es poden llen\xE7ar en contra dels polls."
+    - "Recull les llaunes de beguda energetica i aconsegueix 50 punts extres. Les
+      llaunes es poden llen\xE7ar en contra dels polls."
     - "Podem llen\xE7ar la llauna quan aparegui la senyal de \"Ready\" a la part superior
       utilizant la tecla X."
   textOnScreen: 0
@@ -1576,6 +1621,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 560827567}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &120894252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 120894253}
+  - component: {fileID: 120894254}
+  m_Layer: 0
+  m_Name: ZonaSalt (2)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &120894253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120894252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4898, y: 0.1622, z: -4.113}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 159737975}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &120894254
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120894252}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0015049365, z: 0.13769054}
+  m_Center: {x: -0.0015316487, y: 0.00084699615, z: 0.007079029}
 --- !u!4 &125053282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 30b8fddb9d59fdc4482ca80c2650ea55,
@@ -1789,6 +1878,9 @@ Transform:
   - {fileID: 1909311706}
   - {fileID: 934729729}
   - {fileID: 1970852927}
+  - {fileID: 616551652}
+  - {fileID: 859045313}
+  - {fileID: 120894253}
   m_Father: {fileID: 1048172811}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5038,6 +5130,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1538009870}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &422175849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422175850}
+  - component: {fileID: 422175851}
+  m_Layer: 0
+  m_Name: ZonaSalt (9)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &422175850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422175849}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 91.346, y: 0.055, z: 13.373}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &422175851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422175849}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.14461061}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.012361902}
 --- !u!1 &423137422 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 126446, guid: c2f4b43f266dc11439efef86830dafb4,
@@ -5096,6 +5232,7 @@ GameObject:
   - component: {fileID: 424071847}
   - component: {fileID: 424071849}
   - component: {fileID: 424071848}
+  - component: {fileID: 424071850}
   m_Layer: 0
   m_Name: Manual6
   m_TagString: Untagged
@@ -5145,6 +5282,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &424071850
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424071846}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &425540364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 126446, guid: c2f4b43f266dc11439efef86830dafb4,
@@ -7305,6 +7458,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &616551651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 616551652}
+  - component: {fileID: 616551653}
+  m_Layer: 0
+  m_Name: ZonaSalt
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &616551652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616551651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4898, y: 0.102, z: -6.059}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 159737975}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &616551653
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616551651}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0022014899, z: 0.14904395}
+  m_Center: {x: -0.0015316487, y: -0.00035163373, z: -0.002446413}
 --- !u!1001 &621545346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7424,6 +7621,12 @@ Transform:
   - {fileID: 1761907592}
   - {fileID: 1011004280}
   - {fileID: 807677633}
+  - {fileID: 1226105780}
+  - {fileID: 1791559563}
+  - {fileID: 947239052}
+  - {fileID: 422175850}
+  - {fileID: 1351040738}
+  - {fileID: 30300975}
   m_Father: {fileID: 849020147}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8882,7 +9085,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 9.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10965,6 +11168,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b0c220ebe042b498958eadf1f52fa4, type: 3}
+--- !u!1 &859045312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 859045313}
+  - component: {fileID: 859045314}
+  m_Layer: 0
+  m_Name: ZonaSalt (1)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &859045313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859045312}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4898, y: 0.1622, z: -4.977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 159737975}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &859045314
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 859045312}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0025108717, z: 0.14674416}
+  m_Center: {x: -0.0015316487, y: 0.0013499641, z: 0.0015462876}
 --- !u!1 &862601100 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13,
@@ -10982,8 +11229,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.554324, y: 1.5543231, z: 1.5543228}
-  m_Center: {x: 0.0000009536743, y: 0.77716154, z: 0}
+  m_Size: {x: 1.554324, y: 1.5543231, z: 1.6487236}
+  m_Center: {x: 0.0000009536743, y: 0.77716154, z: -0.015733719}
 --- !u!4 &869935809 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 26be381455f4a274c8688dd8ff4f5893,
@@ -11737,6 +11984,7 @@ GameObject:
   - component: {fileID: 932843216}
   - component: {fileID: 932843218}
   - component: {fileID: 932843217}
+  - component: {fileID: 932843219}
   m_Layer: 0
   m_Name: Manual2
   m_TagString: Untagged
@@ -11786,6 +12034,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &932843219
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932843215}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &934729728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11998,6 +12262,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 945277037}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &947239051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 947239052}
+  - component: {fileID: 947239053}
+  m_Layer: 0
+  m_Name: ZonaSalt (8)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &947239052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947239051}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 89.845, y: -1.5, z: 13.51}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &947239053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947239051}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.1358677}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.007990456}
 --- !u!1 &951295310
 GameObject:
   m_ObjectHideFlags: 0
@@ -12736,6 +13044,7 @@ GameObject:
   - component: {fileID: 986647348}
   - component: {fileID: 986647349}
   - component: {fileID: 986647350}
+  - component: {fileID: 986647351}
   m_Layer: 0
   m_Name: Manual1
   m_TagString: Untagged
@@ -12785,6 +13094,22 @@ MonoBehaviour:
   manualNumber: 1
   instruccionsTrigger: {fileID: 98872637}
   gameManagerScene: {fileID: 805033614}
+--- !u!54 &986647351
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986647347}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &993836562 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 126446, guid: c2f4b43f266dc11439efef86830dafb4,
@@ -13019,6 +13344,7 @@ GameObject:
   - component: {fileID: 1008491131}
   - component: {fileID: 1008491133}
   - component: {fileID: 1008491132}
+  - component: {fileID: 1008491134}
   m_Layer: 0
   m_Name: Manual4
   m_TagString: Untagged
@@ -13034,7 +13360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1008491130}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 2.21, z: 24.52}
+  m_LocalPosition: {x: 0.01, y: 2.21, z: 24.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 98872636}
@@ -13068,6 +13394,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1008491134
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008491130}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1010879983
 GameObject:
   m_ObjectHideFlags: 0
@@ -16296,6 +16638,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa6b7e86e43c34328848e1d90133657e, type: 3}
+--- !u!1 &1226105779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1226105780}
+  - component: {fileID: 1226105781}
+  m_Layer: 0
+  m_Name: ZonaSalt (6)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1226105780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226105779}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 75.17, y: -1.5, z: 13.51}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1226105781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226105779}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.1358677}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.007990456}
 --- !u!1001 &1227219458
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16564,6 +16950,7 @@ GameObject:
   - component: {fileID: 1261768448}
   - component: {fileID: 1261768450}
   - component: {fileID: 1261768449}
+  - component: {fileID: 1261768451}
   m_Layer: 0
   m_Name: Manual3
   m_TagString: Untagged
@@ -16613,6 +17000,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1261768451
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261768447}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1264298386
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17199,6 +17602,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2135403492}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1295377456
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1295377457}
+  - component: {fileID: 1295377458}
+  m_Layer: 0
+  m_Name: ZonaSalt (4)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1295377457
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295377456}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 60.271, y: 0.115, z: 13.373}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 69146650}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1295377458
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1295377456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0012959099, z: 0.13769054}
+  m_Center: {x: -0.0015316486, y: -0.00051161763, z: 0.007079029}
 --- !u!4 &1303033201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 30b8fddb9d59fdc4482ca80c2650ea55,
@@ -17859,6 +18306,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1351040737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1351040738}
+  - component: {fileID: 1351040739}
+  m_Layer: 0
+  m_Name: ZonaSalt (10)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1351040738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351040737}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 105.16, y: 0.055, z: 13.373}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1351040739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1351040737}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.14295964}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.01979067}
 --- !u!1001 &1351598696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18742,6 +19233,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa6b7e86e43c34328848e1d90133657e, type: 3}
+--- !u!1 &1379111318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1379111319}
+  - component: {fileID: 1379111320}
+  m_Layer: 0
+  m_Name: ZonaSalt (3)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1379111319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379111318}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 58.749996, y: -1.4107118, z: 13.506348}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 69146650}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1379111320
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379111318}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.001713952, z: 0.13769054}
+  m_Center: {x: -0.0015316484, y: -0.001556725, z: 0.007079029}
 --- !u!4 &1381987383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 450808, guid: c7ca0992ba00761469f731111e56b107,
@@ -20924,6 +21459,7 @@ GameObject:
   - component: {fileID: 1622476775}
   - component: {fileID: 1622476777}
   - component: {fileID: 1622476776}
+  - component: {fileID: 1622476778}
   m_Layer: 0
   m_Name: Manual5
   m_TagString: Untagged
@@ -20939,7 +21475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1622476774}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 2.21, z: 32.88}
+  m_LocalPosition: {x: 0.01, y: 2.21, z: 33.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 98872636}
@@ -20973,6 +21509,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1622476778
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622476774}
+  serializedVersion: 2
+  m_Mass: 0.00005
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1623296168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: aa6b7e86e43c34328848e1d90133657e,
@@ -22661,6 +23213,8 @@ MonoBehaviour:
   grenadeSound: {fileID: 8300000, guid: c4d1d0a6d819943fabd532d304503484, type: 3}
   gameOverSound: {fileID: 8300000, guid: 26d87a9c5e052469abd501b4de47dce8, type: 3}
   chickenExplosion: {fileID: 8300000, guid: 3b3b871e90bd14029ae35af7890c2c01, type: 3}
+  movingRight: 0
+  crash: 0
 --- !u!65 &1754029056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22672,8 +23226,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.079855, y: 3.053043, z: 0.66613483}
-  m_Center: {x: 0.039927483, y: 1.5235741, z: -0.014934644}
+  m_Size: {x: 1.079855, y: 3.053043, z: 0.7338885}
+  m_Center: {x: 0.039927483, y: 1.5235741, z: 0.002541408}
 --- !u!54 &1754029057
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23056,6 +23610,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1220384006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1791559562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1791559563}
+  - component: {fileID: 1791559564}
+  m_Layer: 0
+  m_Name: ZonaSalt (7)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1791559563
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791559562}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 80.965, y: -1.5, z: 13.51}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 622212516}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1791559564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791559562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0024046802, z: 0.14025497}
+  m_Center: {x: -0.0015316486, y: 0.0016985654, z: 0.008304215}
 --- !u!1001 &1791714736
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24959,7 +25557,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 8b5e031a24be74fb681e2f3d20dcc512, type: 3}
-    m_FontSize: 25
+    m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -25916,6 +26514,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8284759e452b0412cb12b0b6bf5b6a09, type: 3}
+--- !u!1 &2054241867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2054241868}
+  - component: {fileID: 2054241869}
+  m_Layer: 0
+  m_Name: ZonaSalt (5)
+  m_TagString: ObstaclesSalt
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2054241868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054241867}
+  m_LocalRotation: {x: -0.030843573, y: 0.7064338, z: -0.030843573, w: 0.7064338}
+  m_LocalPosition: {x: 61.752, y: 1.616, z: 13.241}
+  m_LocalScale: {x: 10, y: 25, z: 10}
+  m_Children: []
+  m_Father: {fileID: 69146650}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2054241869
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054241867}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13302858, y: 0.0016604614, z: 0.1358677}
+  m_Center: {x: -0.0015316486, y: -0.00014705658, z: 0.007990456}
 --- !u!1 &2054587087 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13,
@@ -26074,8 +26716,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.554324, y: 1.5543231, z: 1.5543228}
-  m_Center: {x: 0.0000009536743, y: 0.77716154, z: 0}
+  m_Size: {x: 1.554324, y: 1.5543231, z: 1.6644573}
+  m_Center: {x: 0.0000009536743, y: 0.77716154, z: -0.007866859}
 --- !u!1 &2062910062 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 134104, guid: 71782582b9d2cac4cba5251a3b767d13,

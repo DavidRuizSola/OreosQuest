@@ -46,7 +46,12 @@ public class PlayerController : MonoBehaviour
     public AudioClip chickenExplosion;
 
     private bool once;
-         
+
+    //Workaround perque els rigidbodies no es sobreposin
+    public bool movingRight;
+    public int crash;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,6 +94,14 @@ public class PlayerController : MonoBehaviour
 
         //inicialitzem les els components del so
         playerAudio = GetComponent<AudioSource>();
+
+        //declarem les variables del walkaround
+        movingRight = true;
+        //crash 0 - vol dir que estem xocant contra res
+        //crash 1 - Hem xocat anant a la dreta
+        //crash 2 - Hem xocat anant conta la esquerra
+        crash = 0;
+
     }
 
     // Update is called once per frame
@@ -109,13 +122,15 @@ public class PlayerController : MonoBehaviour
             
            
             moveOreo = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-            
 
-            
 
-            //Fem que l'oreo es posi a correr si apretem cap a la dreta
 
-            if (Input.GetKey(KeyCode.RightArrow) && !isPaused)
+
+            //Fem que l'oreo es posi a correr cap a la dreta si apretem cap a la dreta
+            //NO podem anar a la dreta si el joc esta en pausa
+            //No podem anar a la dreta si tenim un xoc de dreta
+
+            if (Input.GetKey(KeyCode.RightArrow) && !isPaused && (crash != 1))
             {
                 //encarem al oreo perque es mogui cap a la dreta
                 transform.eulerAngles = new Vector3(0, 0, 0);
@@ -127,10 +142,16 @@ public class PlayerController : MonoBehaviour
 
                 ParticlePlay();
 
-
+                //indiquem que anem a la dreta
+                movingRight = true;
 
             }
-            else if (Input.GetKey(KeyCode.LeftArrow) && !isPaused)
+
+            //Fem que l'oreo es posi a correr cap a l'esquerra si apretem cap a l'esquerra
+            //NO podem anar a l'esquerra si el joc esta en pausa
+            //No podem anar a l'esquerra si tenim un xoc d'esquerra
+
+            else if (Input.GetKey(KeyCode.LeftArrow) && !isPaused && (crash != 3))
             {
                 //encarem al oreo perque es mogui cap a l'esquerra
                 transform.eulerAngles = new Vector3(0, 180, 0);
@@ -141,6 +162,9 @@ public class PlayerController : MonoBehaviour
                 transform.Translate(0, 0, -moveOreo);
 
                 ParticlePlay();
+
+                //indiquem que anem cap a l'esquerra
+                movingRight = false;
             }
             else
             {
@@ -217,6 +241,30 @@ public class PlayerController : MonoBehaviour
         //si esta a sobre d'un obscatle tambe volem que salti
         else if (collision.gameObject.CompareTag("Obstacles"))
         {
+            //isOnGround = true;
+            isOnMoving = false;
+
+            //deixem de saltar
+            NoJump();
+
+            //si hem xocat anat a la dreta, tenim un xoc de dreta
+            //crash =1
+            if (movingRight)
+            {
+                crash = 1;
+            }
+
+            //Si xoquem anant a l'esquerra tenim un xoc d'esquerra
+            //crash = 3
+            else
+            {
+                crash = 3;
+            }
+
+        }
+
+        else if (collision.gameObject.CompareTag("ObstaclesSalt"))
+        {
             isOnGround = true;
             isOnMoving = false;
 
@@ -224,6 +272,7 @@ public class PlayerController : MonoBehaviour
             NoJump();
 
         }
+
 
         //controlem si estem a sobre d'una plataforma mobil
         else if (collision.gameObject.CompareTag("Moving"))
@@ -457,6 +506,16 @@ public class PlayerController : MonoBehaviour
         //playerAnim.SetInteger("Animation_int", 0);
 
         switchState = 3;
+
+    }
+
+    //si deixem de xocar hem de posar el crash a 0
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacles"))
+        {
+            crash = 0;
+        }
 
     }
 }

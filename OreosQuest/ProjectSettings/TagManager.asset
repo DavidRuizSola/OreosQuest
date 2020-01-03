@@ -12,6 +12,9 @@ TagManager:
   - Powerup
   - Grenade
   - Endgame
+  - Crash
+  - ObstaclesSalt
+  - peus
   layers:
   - Default
   - TransparentFX
